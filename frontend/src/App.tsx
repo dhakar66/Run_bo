@@ -1,9 +1,12 @@
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ChallengesPage } from './pages/ChallengesPage'
 
 function App() {
   return (
     <BrowserRouter>
-      <main className="min-h-screen bg-white text-slate-900" />
+      <Routes>
+        <Route path="*" element={<ChallengesPage />} />
+      </Routes>
     </BrowserRouter>
   )
 }
