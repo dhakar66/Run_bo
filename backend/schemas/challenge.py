@@ -23,7 +23,7 @@ class ChallengeCreate(BaseModel):
         json_schema_extra={
             "examples": [
                 {
-                    "name": "Run for Tibet Autumn Challenge",
+                    "name": "Run Tib Autumn Challenge",
                     "description": "Complete 50 km or 100 km during the challenge window.",
                     "starts_at": "2026-10-01T00:00:00Z",
                     "ends_at": "2026-10-31T23:59:59Z",

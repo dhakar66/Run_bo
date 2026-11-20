@@ -4,6 +4,7 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.auth import require_challenge_creator
 from core.database import get_db_session
 from models.challenge import ChallengeStatus
 from schemas.challenge import ChallengeCreate, ChallengeRead
@@ -18,9 +19,10 @@ SessionDependency = Annotated[AsyncSession, Depends(get_db_session)]
     response_model=ChallengeRead,
     status_code=status.HTTP_201_CREATED,
     summary="Create a challenge",
+    dependencies=[Depends(require_challenge_creator)],
     description=(
         "Create a challenge window. Participants choose a 50 km or 100 km target "
-        "when they enroll. Authentication will be added in the Auth0 phase."
+        "when they enroll. Requires the create:challenges permission."
     ),
 )
 async def create_challenge(

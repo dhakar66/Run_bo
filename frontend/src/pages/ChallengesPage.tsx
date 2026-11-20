@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Activity, ArrowRight, Mountain, RefreshCw } from 'lucide-react'
+import { Activity, Mountain, RefreshCw } from 'lucide-react'
+import { AuthControls } from '../components/AuthControls'
 import { ChallengeCard } from '../components/ChallengeCard'
 import { getChallenges, type Challenge } from '../services/challenges'
 
@@ -34,15 +35,13 @@ export function ChallengesPage() {
   return (
     <div className="app-shell">
       <header className="site-header">
-        <a className="brand" href="/" aria-label="Run for Tibet home">
+        <a className="brand" href="/" aria-label="Run Tib home">
           <span className="brand__mark">
             <Mountain size={20} strokeWidth={2} aria-hidden="true" />
           </span>
-          <span>Run for Tibet</span>
+          <span>Run Tib</span>
         </a>
-        <a className="docs-link" href="http://localhost:8000/docs">
-          API docs <ArrowRight size={16} aria-hidden="true" />
-        </a>
+        <AuthControls />
       </header>
 
       <main>
@@ -55,7 +54,7 @@ export function ChallengesPage() {
           <div className="hero__overlay" />
           <div className="hero__content">
             <p className="eyebrow">Virtual distance challenge</p>
-            <h1 id="hero-title">Run for Tibet</h1>
+            <h1 id="hero-title">Run Tib</h1>
             <p className="hero__lede">
               Choose your distance. Run on your own days. Carry every kilometre
               toward one shared finish line.

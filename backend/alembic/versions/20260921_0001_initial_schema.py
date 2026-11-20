@@ -1,4 +1,4 @@
-"""Create the initial Run for Tibet schema.
+"""Create the initial Run Tib schema.
 
 Revision ID: 20260921_0001
 Revises:

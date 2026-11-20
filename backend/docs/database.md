@@ -1,7 +1,7 @@
 # Database Design
 
 The database stores application data, while Auth0 remains responsible for sign-in,
-Google OAuth, password security, and identity verification. Run for Tibet never
+Google OAuth, password security, and identity verification. Run Tib never
 stores a user password.
 
 ## Entity relationship diagram
@@ -81,8 +81,9 @@ flowchart LR
 
 The `auth0_subject` value comes from the validated token's `sub` claim and is the
 stable identity key. Email is profile data and is not used as the primary identity,
-because it can change. The Auth0 middleware and callback endpoints are intentionally
-not part of this database-layer step.
+because it can change. The frontend handles the Auth0 redirect; the backend validates
+access tokens and provisions the local user through `/api/v1/auth/me`. See
+[authentication setup](authentication.md) for configuration.
 
 ## Challenge progress flow
 
@@ -129,8 +130,10 @@ challenges, without importing it more than once.
 
 ## Migrations
 
-From the `backend` directory, apply the schema after PostgreSQL is available and
-`DATABASE_URL` has been placed in `.env`:
+Create a PostgreSQL database named `run_tib` (for example, in DBeaver) and set
+`DATABASE_URL` in `backend/.env` to point to it.
+
+From the `backend` directory, apply the schema:
 
 ```bash
 alembic upgrade head

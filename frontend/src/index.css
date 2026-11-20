@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+/* This stylesheet uses custom classes; add the utilities directive when needed. */
 
 :root {
   font-family:
@@ -455,4 +455,66 @@ a {
   .challenge-card {
     min-height: 340px;
   }
+}
+
+.auth-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.auth-status {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.auth-button {
+  padding: 10px 14px;
+  color: #172d41;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.auth-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.auth-button:focus-visible {
+  outline: 3px solid #f5c443;
+  outline-offset: 3px;
+}
+
+.auth-error {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(320px, calc(100vw - 32px));
+  padding: 14px;
+  color: #8b242a;
+  background: #fff;
+  border: 1px solid #e3c6c6;
+  border-radius: 4px;
+  font-size: 13px;
+  box-shadow: 0 4px 16px #0002;
+}
+
+.auth-error p { margin: 0; }
+.auth-error button { margin-top: 10px; cursor: pointer; }
+
+@media (max-width: 620px) {
+  .auth-controls { gap: 6px; }
+  .auth-controls .auth-status { max-width: 75px; font-size: 11px; }
+  .auth-button { padding: 9px; font-size: 12px; }
+  .brand { gap: 6px; font-size: 15px; flex-shrink: 0; }
+  .site-header { gap: 12px; }
 }

@@ -3,14 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api import api_router
 from core.config import get_settings
+from core.request_logging import log_request
 
 settings = get_settings()
 
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
+    swagger_ui_oauth2_redirect_url=None,
     description=(
-        "API for managing Run for Tibet virtual challenges and, in later phases, "
+        "API for managing Run Tib virtual challenges and, in later phases, "
         "participant progress imported from Strava."
     ),
     openapi_tags=[
@@ -21,6 +23,8 @@ app = FastAPI(
     ],
 )
 
+app.middleware("http")(log_request)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[settings.frontend_origin],
@@ -28,6 +32,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["X-Request-ID"],
 )
 
 app.include_router(api_router, prefix=settings.api_v1_prefix)

@@ -5,3 +5,6 @@ asyncpg
 alembic
 pydantic
 pydantic-settings
+PyJWT[crypto]>=2.10,<3
+httpx>=0.28,<1
+certifi>=2024.7.4
